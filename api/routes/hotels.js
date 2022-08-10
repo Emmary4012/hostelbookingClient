@@ -1,14 +1,16 @@
 import express from "express";
-import { createHotel, deleteHotel, getHotels, getHotel, updateHotel, countByCity, countByType } from "../controllers/hotel.js";
+import { createHotel, deleteHotel, getHotels, getHotel, updateHotel, countByCity, countByType, getHotelRooms } from "../controllers/hotel.js";
 import { verifyAdmin } from "../Utils/verifyToken.js";
 const hotelsRoute = express.Router();
 
 
 //CREATE
-hotelsRoute.post("/",verifyAdmin, createHotel);
+hotelsRoute.post("/", createHotel);
+// verifyAdmin,
 
 //UPDATE
-hotelsRoute.put("/:id", verifyAdmin ,updateHotel);
+hotelsRoute.put("/:id" ,updateHotel);
+// , verifyAdmin
 
 //DELETE
 hotelsRoute.delete("/:id", verifyAdmin,deleteHotel);
@@ -20,5 +22,6 @@ hotelsRoute.get("/find/:id", getHotel);
 hotelsRoute.get("/", getHotels);
 hotelsRoute.get("/countByCity", countByCity);
 hotelsRoute.get("/countByType", countByType);
+hotelsRoute.get("/room/:id", getHotelRooms);
 
-export default hotelsRoute
+export default hotelsRoute;

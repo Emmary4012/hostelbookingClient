@@ -1,8 +1,11 @@
 import "./navbar.css"
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className="navbar">
       <div className="navContainer">
@@ -10,8 +13,11 @@ const Navbar = () => {
         <span className="logo">lamabooking</span>
         </Link>
         <div className="navItems">
-          <button className="navButton">Register</button>
-          <button className="navButton">Login</button>
+          <Link to="/hotels" style={{color:"inherit", textDecoration: "none"}}>
+          <span className="logo">Hotels</span>
+          </Link>
+          <button className="navButton" onClick={()=>navigate("/register")}>Register</button>
+          <button className="navButton" onClick={()=>navigate("/login")}>Login</button>
         </div>
       </div>
     </div>

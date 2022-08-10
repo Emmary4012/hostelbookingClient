@@ -17,7 +17,7 @@ export const deleteUser = async (req,res)=>{
 
     try {
         await User.findByIdAndDelete(req.params.id);
-        res.status(200).json("Hotel has been deleted");
+        res.status(200).json("User has been deleted");
     } catch (err) {
         next(err);
     }

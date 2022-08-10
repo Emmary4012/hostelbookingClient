@@ -11,12 +11,13 @@ usersRoute.get("/checkauthentication", verifyToken, (req,res,next)=>{
 usersRoute.put("/:id",verifyUser, updateUser);
 
 //DELETE
-usersRoute.delete("/:id",verifyUser, deleteUser);
+usersRoute.delete("/:id", deleteUser);
+// ,verifyUser
 
 //GET
 usersRoute.get("/:id",verifyUser, getUser);
 
 //GET ALL
-usersRoute.get("/", verifyAdmin, getUsers);
-
+usersRoute.get("/",  getUsers);
+// verifyAdmin,
 export default usersRoute

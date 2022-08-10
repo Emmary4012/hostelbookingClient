@@ -3,11 +3,11 @@ import React from "react";
 import useFetch from "../../hooks/useFetch";
 
 const FeaturedProperties = () => {
-  const {data, loading, error} = useFetch("http://localhost:8800/api/hotels/countByCity?featured")
+  const {data, loading, error} = useFetch("/hotels/countByCity?featured")
   console.log(data)
   return (
     <div className="fp">
-      {loading? "Loading, please wait": <>
+      {loading? "Loading, please wait": <> 
         {data.map((item)=>(
            <div className="fpItem" key={item._id}>
            <img src={item.photos[0]} alt="Image" className="fpImg" />
