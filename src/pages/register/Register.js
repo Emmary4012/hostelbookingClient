@@ -16,7 +16,7 @@ const Login = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("/api/auth/register", credentials);
+            const res = await axios.post("https://hostel7booking.herokuapp.com/api/auth/register", credentials);
             console.log("Registered successfully");
             // navigate("/")
         } catch (error) {

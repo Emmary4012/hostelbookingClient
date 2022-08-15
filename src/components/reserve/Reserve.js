@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Reserve = ({ setOpen, hotelId, dates }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
-  const { data, loading, error } = useFetch(`/api/hotels/room/${hotelId}`);
+  const { data, loading, error } = useFetch(`https://hostel7booking.herokuapp.com/api/hotels/room/${hotelId}`);
 
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);

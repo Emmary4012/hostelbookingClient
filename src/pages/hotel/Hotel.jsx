@@ -45,7 +45,7 @@ const Hotel = () => {
 
   };
   
-  const {data, loading, error} = useFetch(`/api/hotels/find/${id}`)
+  const {data, loading, error} = useFetch(`https://hostel7booking.herokuapp.com/api/hotels/find/${id}`)
 
   const MILLISECONDS_PER_DAY = 1000*60*60*24;
   function dayDifference(date1,date2){
