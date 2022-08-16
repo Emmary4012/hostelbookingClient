@@ -10,8 +10,8 @@ const List = () => {
   const [destination, setDestination] = useState("");
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
-//   const {data, loading, error, reFetch} = useFetch(`https://hostel7booking.herokuapp.com/hotels?city=${destination}&min=${min||0}&max=${max||999}`)
- const {data, loading, error, reFetch} = useFetch(`https://hostel7booking.herokuapp.com/api/hotels`)
+  const {data, loading, error, reFetch} = useFetch(`https://hostel7booking.herokuapp.com/api/hotels?city=${destination}&min=${min||0}&max=${max||999}`)
+
 console.log(data)
   const handleClick =()=>{
     reFetch()
