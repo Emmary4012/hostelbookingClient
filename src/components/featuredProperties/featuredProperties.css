@@ -8,7 +8,7 @@
 
 .fpItem{
   flex: 1;
-  gap: 10px;
+  gap: 7px;
   display: flex;
   flex-direction: column;
 }
@@ -17,6 +17,7 @@
   width: 100%;
   height: 250px;
   object-fit: cover;
+  border-radius: 5px;
 }
 
 .fpName{
@@ -33,15 +34,14 @@
 }
 
 .fpRating>button{
-  background-color: #003580;
-  color: white;
+  color: #febb02;
   border: none;
-  padding: 3px;
+  background-color: white;
   margin-right: 10px;
   font-weight: bold;
 }
 
 
 .fpRating>span{
-  font-size: 14px;
+  font-size: 12px;
 }

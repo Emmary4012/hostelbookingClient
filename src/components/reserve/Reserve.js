@@ -6,35 +6,30 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Reserve = ({ setOpen, hotelId, dates }) => {
+const Reserve = ({ setOpen, hostelId, dates }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
-  const { data, loading, error } = useFetch(`https://hostel7booking.herokuapp.com/api/hotels/room/${hotelId}`);
-
+  const { data, loading, error } = useFetch(`https://hostel7booking.herokuapp.com/api/hostels/room/${hostelId}`);
+  
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
-
-    const date = new Date(start.getTime()) 
-
+    const date = new Date(start.getTime()); 
     const dates = [];
 
     while (date <= end) {
       dates.push(new Date(date).getTime());
       date.setDate(date.getDate() + 1);
     }
-
     return dates;
   };
 
   const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
-  console.log(alldates)
+  
   const isAvailable = (roomNumber) => {
-    const isFound = roomNumber.unavailableDates.some((date) =>
-      alldates.includes(new Date(date).getTime())
-
-    );
-    console.log(!isFound);
-    return !isFound;
+   const f = new Date(roomNumber.unavailableDates[roomNumber.unavailableDates.length-1]);
+   const d = f.getTime();
+   const ok = d>alldates[0];
+   return !ok;
   };
 
   const handleSelect = (e) => {
@@ -48,19 +43,19 @@ const Reserve = ({ setOpen, hotelId, dates }) => {
   };
 
   const navigate = useNavigate();
-
+  
   const handleClick = async () => {
-    try {
+     try {
       await Promise.all(
         selectedRooms.map((roomId) => {
-          const res = axios.put(`/rooms/availability/${roomId}`, {
+          const res = axios.put(`https://hostel7booking.herokuapp.com/api/hostelrooms/availability/${roomId}`, {
             dates: alldates,
           });
           return res.data;
         })
       );
       setOpen(false);
-      navigate("/");
+      navigate("/confirmation");
     } catch (err) {}
   };
   return (
@@ -72,7 +67,7 @@ const Reserve = ({ setOpen, hotelId, dates }) => {
           onClick={() => setOpen(false)}
         />
         <span>Select your rooms:</span>
-        {data.map((item) => (
+        {data && data.map((item) => (
           <div className="rItem" key={item._id}>
             <div className="rItemInfo">
               <div className="rTitle">{item.title}</div>
@@ -80,7 +75,7 @@ const Reserve = ({ setOpen, hotelId, dates }) => {
               <div className="rMax">
                 Max people: <b>{item.maxPeople}</b>
               </div>
-              <div className="rPrice">{item.price}</div>
+              <div className="rPrice">usx {item.price}</div>
             </div>
             <div className="rSelectRooms">
               {item.roomNumbers.map((roomNumber) => (
@@ -106,6 +101,3 @@ const Reserve = ({ setOpen, hotelId, dates }) => {
 };
 
 export default Reserve;
-
-
-// const date = new Date(start.getTime()); .getTime()

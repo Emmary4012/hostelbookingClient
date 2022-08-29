@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {Link} from "react-router-dom";
 
-const Login = () => {
+const Login = ({setUsername}) => {
     const [credentials, setCredentials] = useState({
         username: undefined,
         password: undefined,
@@ -15,11 +15,11 @@ const Login = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         try {    
-            const res = await axios.post("https://hostel7booking.herokuapp.com/api/auth/login", credentials);
-            console.log("Login successful");
+            await axios.post("https://hostel7booking.herokuapp.com/api/auth/login", credentials);
+            setUsername(credentials.username);
             navigate("/")
         } catch (error) {
-            console.log("Login failed");
+            console.log("Sorry, login failed");
         }
     }
 
@@ -37,7 +37,6 @@ const Login = () => {
                     </Link>
                 </button> 
             </div> 
-            {/* {err && <span>{err.message}</span>} */}
         </div>
     </div>
   )

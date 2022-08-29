@@ -1,4 +1,5 @@
-import "./hotel.css";
+import "./hostel.css";
+import Navbar from "../../components/navbar/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleArrowLeft,
@@ -7,6 +8,7 @@ import {
   faLocationDot,
   faCalendarDays,
   faPerson,
+  faWhatsApp,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import React from "react";
@@ -18,8 +20,7 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import Reserve from "../../components/reserve/Reserve";
 
-const Hotel = ({username}) => {
-  
+const Hostel = ({username, dat}) => {
   const {id} = useParams();
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
@@ -39,10 +40,9 @@ const Hotel = ({username}) => {
         [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
       };
     });
-
   };
   
-  const {data, loading, error} = useFetch(`https://localhost:5000/api/hotels/find/${id}`)
+  const {data, loading, error} = useFetch(`https://hostel7booking.herokuapp.com/api/hostels/find/${id}`);
 
   const MILLISECONDS_PER_DAY = 1000*60*60*24;
   function dayDifference(date1,date2){
@@ -52,6 +52,8 @@ const Hotel = ({username}) => {
   }
 
   const days = dayDifference(dates[0].startDate,dates[0].endDate)
+  const month = days/30;
+  const months = month.toFixed(2);
   const handleClick =()=>{setOpenModal(true)}
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -71,11 +73,11 @@ const Hotel = ({username}) => {
   };
 
   return (
-    <div>
+    <div className="header">
       <Navbar username = {username}/>
-      <div className="header">
+      <div>
              <div className="headerSearch">
-              
+
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
                 <span
@@ -171,10 +173,10 @@ const Hotel = ({username}) => {
                   </div>
                 )}
               </div>
+              
             </div>
-          </div>
-
-     { loading? ("Loading"):(
+            </div>
+     
         <div className="hotelContainer">
             {open && (
               <div className="slider">
@@ -199,17 +201,18 @@ const Hotel = ({username}) => {
               </div>
             )}
             <div className="hotelWrapper">
-              <button className="bookNow">Reserve or Book Now!</button>
+              <button className="bookNow" onClick={handleClick}>Reserve or Book Now!</button>
               <h1 className="hotelTitle">{data.name}</h1>
               <div className="hotelAddress">
                 <FontAwesomeIcon icon={faLocationDot} />
-                <span>{data.address}</span>
+                <span> {data.address}</span>
               </div>
               <span className="hotelDistance">
-                Excellent location – {data.distance}m from center
+                 {data.distance}
               </span>
               <span className="hotelPriceHighlight">
-                Book a stay over ${data.cheapestPrice} at this property and get a free airport taxi
+              <FontAwesomeIcon icon="faWhatsApp" />
+                Book a monthly stay at only usx {data.cheapestPrice} at {data.name} {data.type}.
               </span>
               <div className="hotelImages">
                 {data.img?.map((photo, i) => (
@@ -225,29 +228,24 @@ const Hotel = ({username}) => {
               </div>
               <div className="hotelDetails">
                 <div className="hotelDetailsTexts">
-                  <h1 className="hotelTitle">{data.desc}</h1>
+                  <h1 className="hotelTitle">{data.title}!</h1>
                   <p className="hotelDesc">
                     {data.desc}
                   </p>
                 </div>
                 <div className="hotelDetailsPrice">
-                  <h1>Perfect for a {days}-night stay!</h1>
-                  <span>
-                    Located in the real heart of Krakow, this property has an
-                    excellent location score of 9.8!
-                  </span>
                   <h2>
-                    <b>${days*data.cheapestPrice*options.rooms}</b> ({days} nights)
+                    <b>usx {months*data.cheapestPrice*options.rooms}</b> ({months} months)
                   </h2>
                   <button onClick={handleClick}>Reserve or Book Now!</button>
                 </div>
               </div>
             </div>
-          </div>)
-        }
-        {openModal && <Reserve dates={dates} hotelId={id} setOpen={setOpenModal}/>}
+          </div>
+       
+        {openModal && <Reserve dates={dates} hostelId={id} setOpen={setOpenModal}/>}
     </div>
   );
 };
 
-export default Hotel;
+export default Hostel;

@@ -1,0 +1,84 @@
+<a>
+mail to link
+Link to an element with a specified id
+add javascript
+
+
+<article>
+  <h1>Google Chrome</h1>
+  <p>Google Chrome is a free, open-source web browser developed by Google, released in 2008.</p>
+</article>
+
+<p>My family and I visited The Epcot center this summer.</p>
+<aside>
+  <h4>Epcot Center</h4>
+  <p>The Epcot Center is a theme park in Disney World, Florida.</p>
+</aside>
+
+<audio controls autoplay controls mute src loop>
+  <source src="horse.ogg" type="audio/ogg">
+  <source src="horse.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
+
+<base href="http://www.w3schools.com/images/" target="_blank">
+
+<ul>
+  <li>User <bdi>hrefs</bdi>: 60 points</li>
+  <li>User <bdi>jdoe</bdi>: 80 points</li>
+  <li>User <bdi>إيان</bdi>: 90 points</li>
+</ul>
+
+<blockquote cite="http://www.worldwildlife.org/who/index.html">
+For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.
+</blockquote>
+
+<button type="button" autofocus disabled form formaction formenctype formmethod formnovalidate formtarget name value>Click Me!</button>
+
+<canvas id="myCanvas"></canvas>
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0, 0, 80, 80);
+</script>
+
+ <caption>Monthly savings</caption>
+
+<p><cite>The Scream</cite> by Edward Munch. Painted in 1893.</p>
+
+<code>A piece of computer code</code>
+
+<colgroup>
+    <col span="2" style="background-color:red">
+    <col style="background-color:yellow">
+  </colgroup>
+
+<input list="browsers">
+
+<datalist id="browsers">
+  <option value="Internet Explorer">
+  <option value="Firefox">
+  <option value="Chrome">
+  <option value="Opera">
+  <option value="Safari">
+</datalist>
+
+<del cite date/>
+
+<details>
+  <summary>Copyright 1999-2014.</summary>
+  <p> - by Refsnes Data. All Rights Reserved.</p>
+  <p>All content and graphics on this web site are the property of the company Refsnes Data.</p>
+</details>
+
+<p><dfn>HTML</dfn> is the standard markup language for creating web pages.</p>
+
+<dl>
+  <dt>Coffee</dt>
+  <dd>Black hot drink</dd>
+  <dt>Milk</dt>
+  <dd>White cold drink</dd>
+</dl>
+
+<embed src="helloworld.swf">

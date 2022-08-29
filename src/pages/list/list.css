@@ -13,9 +13,7 @@
 
 .listSearch {
   flex: 1;
-  background-color: #febb02;
   padding: 10px;
-  border-radius: 10px;
   position: sticky;
   top: 10px;
   height: max-content;
@@ -38,10 +36,18 @@
   font-size: 12px;
 }
 
-.lsItem>input{
-  height: 30px;
-  border: none;
+.lsItem>select{
+  width: 100%;
   padding: 5px;
+  border: none;
+  border-bottom: 1px solid #febb02;
+}
+.lsItem>input{
+  width: 100%;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid #febb02;
+  outline: none;
 }
 .lsItem>span{
   height: 30px;
@@ -65,12 +71,16 @@
 }
 
 .lsOptionInput{
-  width: 50px;
+  width: 30%;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid #febb02;
+  outline: none;
 }
 
 .listSearch>button{
   padding: 10px;
-  background-color: #0071c2;
+  background-color: #003580;
   color: white;
   border: none;
   width: 100%;
@@ -80,4 +90,9 @@
 
 .listResult {
   flex: 3;
+}
+
+.select{
+  border-radius: 5px;
+  border: none;
 }

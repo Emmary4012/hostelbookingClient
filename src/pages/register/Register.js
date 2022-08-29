@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {Link} from "react-router-dom";
 
-const Login = () => {
+const Register = ({setUsername}) => {
     const [credentials, setCredentials] = useState({
         username: undefined,
         email: undefined,
@@ -16,11 +16,11 @@ const Login = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("https://hostel7booking.herokuapp.com/api/auth/register", credentials);
-            console.log("Registered successfully");
-            // navigate("/")
+            await axios.post("https://hostel7booking.herokuapp.com/api/auth/register", credentials);
+            setUsername(credentials.username);
+            navigate("/");
         } catch (error) {
-            console.log("Register failed");
+            console.log("Sorry, registration failed");
         }
     }
 
@@ -39,10 +39,9 @@ const Login = () => {
                     </Link>
                 </button> 
             </div>
-            {/* {err && <span>{err.message}</span>} */}
         </div>
     </div>
   )
 }
 
-export default Login;
+export default Register;

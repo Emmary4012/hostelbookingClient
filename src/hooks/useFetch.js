@@ -33,11 +33,3 @@ return {data, loading, error, reFetch };
 };
 
 export default useFetch;
-
-
-// position: relative;
-//   color: white;
-//   border-radius: 10px;
-//   overflow: hidden;
-//   height: 250px;
-//   flex:1

@@ -25,3 +25,18 @@
   cursor: pointer;
   color: #003580;
 }
+
+.navUsername{
+  margin-left: 20px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #003580;
+  color: white;
+  font-weight: 500;
+  font-size: 0.45cm;
+}
+
+.navItem{
+  margin-right: 40px;
+}
