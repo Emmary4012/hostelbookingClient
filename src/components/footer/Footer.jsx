@@ -27,11 +27,6 @@ const Footer = () => {
           <li className="fListItem">Terms & Conditions</li>
         </ul>
         <ul className="fList">
-<<<<<<< HEAD
-	          {/* <a href="http://www.w3schools.com" download="filename" hreflang="language_code" media="media_query" rel="a variety" rev = "text" target="_blank,_parent, _self, _top, framename" type="media_type" title = "Visit Hostelbooking Facebook Page">facebook</a> */}
-=======
-	         // <a href="http://www.w3schools.com" download="filename" hreflang="language_code" media="media_query" rel="a variety" rev = "text" target="_blank,_parent, _self, _top, framename" type="media_type" title = "Visit Hostelbooking Facebook Page">facebook</a>
->>>>>>> 366726602a6853a012ea5b2be9e1aa4d5cc82611
 	          <li className="fListItem">0773776410</li>
 	          <li className="fListItem">emmanuelapita12@gmail.com</li>
 	          <li className="fListItem">0756444209</li>
