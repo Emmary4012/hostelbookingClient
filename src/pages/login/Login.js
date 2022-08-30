@@ -19,7 +19,7 @@ const Login = ({setUsername}) => {
             setUsername(credentials.username);
             navigate("/")
         } catch (error) {
-            console.log("Sorry, login failed");
+            console.log("Sorry, login failed. ");
         }
     }
 
