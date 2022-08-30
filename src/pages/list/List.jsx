@@ -5,10 +5,11 @@ import React from "react";
 import useFetch from "../../hooks/useFetch";
 import Navbar from "../../components/navbar/Navbar";
 
-const List = ({username, institutions, villages}) => {
+const List = ({username}) => {
  
   const [campus, setCampus] = useState();
   const [village, setVillage] = useState();
+  const [villages, setVillages] = useState([]);
   const [min, setMin] = useState();
   const [max, setMax] = useState();
   const {data, loading, error, reFetch} = useFetch(`https://hostel7booking.herokuapp.com/api/hostels?campus=${campus||"MUK"||"MUBS"}&village=${village||"Kikoni B"}&min=${min||0}&max=${max||9999999}`);
@@ -16,7 +17,25 @@ const List = ({username, institutions, villages}) => {
   const handleClick =()=>{
     reFetch()
   }
+ const institutions = ["MUK", "KYU", "MUBS", "KIU", "UCU", "UMU"]
 
+const settingVillages = (campus) => {
+setCampus(campus)
+
+switch (campus) {
+  case "MUK":
+    setVillages(["Kikoni A", "Kikoni B", "Kikumi Kikumi"]);
+    break;
+  case "KYU":
+    setVillages(["Ntinda", "Kireka"]);
+    break;
+  case "MUBS":
+  setVillages(["Nakawa", "Mbuya"]);
+    break;
+  default:
+    setVillages([]);
+}
+}
   return (
     <div>
        <Navbar username = {username}/>
@@ -27,7 +46,7 @@ const List = ({username, institutions, villages}) => {
             <div className="lsItem">
               <label>Campus</label>
               {/* <input  placeholder="Enter MUK/KYU/MUBS/..." type="text"  onChange={(e) => {setCampus(e.target.value)}} /> */}
-              <select id="institutions" onChange={(e) => {setCampus(e.target.value)}} className="select">
+              <select id="institutions" onChange = {(e)=>{settingVillages(e.target.value)}} className="select">
                   {institutions.map((campus,i) => (
                         <option key={i} value={campus}>
                           {campus}
