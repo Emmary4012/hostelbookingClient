@@ -1,13 +1,14 @@
 .navbar{
-  height: 50px;
+  height: 70px;
   background-color: #003580;
   display: flex;
   justify-content: center;
+  padding: 10px;
+  z-index: 2;
 }
 
 .navContainer{
   width: 100%;
-  max-width: 1024px;
   color: white;
   display: flex;
   align-items: center;
@@ -18,25 +19,65 @@
   font-weight: 500;
 }
 
-.navButton{
-  margin-left: 20px;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  color: #003580;
+.navItems{
+  display: flex;
+  font-size: 15px;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: center;
 }
-
-.navUsername{
-  margin-left: 20px;
-  border: none;
-  padding: 5px 10px;
+.navLinks{
+  position: relative;
   cursor: pointer;
+}
+.linksdropdown{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
   background-color: #003580;
-  color: white;
-  font-weight: 500;
-  font-size: 0.45cm;
+  color: #febb02;
+  top: 30px;
+  left: -10px;
+  padding: 10px;
+  border-radius: 5px;
+  justify-content: center;
+  z-index: 1;
+}
+.navLink{
+  text-decoration: none;
+  color: inherit;
 }
 
-.navItem{
-  margin-right: 40px;
+@media only screen and (min-width: 600px) {
+  .navbar{
+    height: 50px;
+    background-color: #003580;
+    display: flex;
+    justify-content: center;
+  }
+  .navContainer{
+    width: 100%;
+    max-width: 1024px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }   
+  .navButton{
+    margin-left: 20px;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: #003580;
+  }
+  .navUsername{
+    margin-left: 20px;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #003580;
+    color: white;
+    font-weight: 500;
+    font-size: 0.45cm;
+  }
 }

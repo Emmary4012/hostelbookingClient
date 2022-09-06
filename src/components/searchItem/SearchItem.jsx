@@ -9,7 +9,7 @@ const SearchItem = ({item}) => {
       {item.img && <img src={item.img[0]} alt="Hotel Image" className="siImg"/>}
       <div className="siDesc">
         <h1 className="siTitle">{item.name}</h1>
-        <span className="siDistance">{item.distance}</span>
+        <span className="siDistance">About {item.distance}</span>
         <span className="siFeatures">
           {item.desc}
         </span>
@@ -24,10 +24,10 @@ const SearchItem = ({item}) => {
           <button>{item.rating}</button>
         </div>}
         <div className="siDetailTexts">
-          <span className="siPrice">usx {item.cheapestPrice}</span>
+          <span className="siPrice">Starting from usx {item.cheapestPrice}</span>
           <span className="siTaxOp">Includes taxes and fees</span>
           <Link to={`/hostels/${item._id}`}>
-          <button className="siCheckButton">See availability</button>
+          <button className="siCheckButton">See Availability</button>
           </Link>
         </div>
       </div>

@@ -82,3 +82,12 @@ ctx.fillRect(0, 0, 80, 80);
 </dl>
 
 <embed src="helloworld.swf">
+
+Adjusting the search url 
+About us page, Contact (History, merits, form)
+Updating
+
+Whatsapp, mobile money, email, facebook
+
+Distance from Ivory Tower
+

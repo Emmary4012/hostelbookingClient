@@ -1,4 +1,4 @@
-import "./hostel.css";
+import "./property.css";
 import Navbar from "../../components/navbar/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,7 +8,6 @@ import {
   faLocationDot,
   faCalendarDays,
   faPerson,
-  faWhatsApp,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import React from "react";
@@ -19,18 +18,14 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import Reserve from "../../components/reserve/Reserve";
+import { useLocation } from "react-router-dom";
 
-const Hostel = ({username, dat}) => {
+const Property = ({ credentials, dates, setDates, selectedRooms, setSelectedRooms}) => {
   const {id} = useParams();
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openDate, setOpenDate] = useState(false);
-  const [dates, setDates] = useState([ {
-    startDate: new Date(),
-    endDate: new Date(),
-    key: "selection",
-  },]);
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({ adults: 1, children: 0, rooms: 1,});
   const handleOption = (name, operation) => {
@@ -41,8 +36,9 @@ const Hostel = ({username, dat}) => {
       };
     });
   };
-  
-  const {data, loading, error} = useFetch(`https://hostel7booking.herokuapp.com/api/hostels/find/${id}`);
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
+  const {data, loading, error} = useFetch(`https://hostel7booking.herokuapp.com/api/${path}/find/${id}`);
 
   const MILLISECONDS_PER_DAY = 1000*60*60*24;
   function dayDifference(date1,date2){
@@ -51,15 +47,16 @@ const Hostel = ({username, dat}) => {
     return diffDays;
   }
 
-  const days = dayDifference(dates[0].startDate,dates[0].endDate)
+  const days = dayDifference(dates[0].startDate, dates[0].endDate)
   const month = days/30;
   const months = month.toFixed(2);
-  const handleClick =()=>{setOpenModal(true)}
+  const handleClick =()=>{setOpenModal(true)  
+   Object.assign(credentials, {propertyName: data.name, propertyType: data.type, months: months, price: 0.05*data.cheapestPrice})}
   const handleOpen = (i) => {
     setSlideNumber(i);
     setOpen(true);
   };
-
+  const price = Math.round(0.05*months*data.cheapestPrice*options.rooms/1000)*1000;
   const handleMove = (direction) => {
     let newSlideNumber;
 
@@ -68,14 +65,13 @@ const Hostel = ({username, dat}) => {
     } else {
       newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
     }
-
     setSlideNumber(newSlideNumber)
   };
 
   return (
     <div className="header">
-      <Navbar username = {username}/>
-      <div>
+      <Navbar username = {credentials.username}/>
+      <div className="cover">
              <div className="headerSearch">
 
               <div className="headerSearchItem">
@@ -202,17 +198,16 @@ const Hostel = ({username, dat}) => {
             )}
             <div className="hotelWrapper">
               <button className="bookNow" onClick={handleClick}>Reserve or Book Now!</button>
-              <h1 className="hotelTitle">{data.name}</h1>
-              <div className="hotelAddress">
+              <h1 className="hotelTitle">{data.name} {data.type}</h1>
+              {/* <div className="hotelAddress">
                 <FontAwesomeIcon icon={faLocationDot} />
                 <span> {data.address}</span>
-              </div>
+              </div> */}
               <span className="hotelDistance">
-                 {data.distance}
+                About {data.distance}
               </span>
               <span className="hotelPriceHighlight">
-              <FontAwesomeIcon icon="faWhatsApp" />
-                Book a monthly stay at only usx {data.cheapestPrice} at {data.name} {data.type}.
+                Book a monthly stay at a minimum of only usx {data.cheapestPrice} at {data.name} {data.type}.
               </span>
               <div className="hotelImages">
                 {data.img?.map((photo, i) => (
@@ -234,18 +229,20 @@ const Hostel = ({username, dat}) => {
                   </p>
                 </div>
                 <div className="hotelDetailsPrice">
-                  <h2>
-                    <b>usx {months*data.cheapestPrice*options.rooms}</b> ({months} months)
-                  </h2>
+                  <h3>
+                    {months==0? "Please, select from the calender a range of dates when you want to be served.": <div>
+                    Reservation fee is only <b> usx {price}</b> for {months} months</div>}
+                  </h3>
                   <button onClick={handleClick}>Reserve or Book Now!</button>
                 </div>
               </div>
             </div>
           </div>
        
-        {openModal && <Reserve dates={dates} hostelId={id} setOpen={setOpenModal}/>}
+        {openModal && <Reserve dates={dates} propertyId={id} setOpen={setOpenModal} 
+         selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms}/>}
     </div>
   );
 };
 
-export default Hostel;
+export default Property;

@@ -4,7 +4,7 @@ import useFetch from "../../hooks/useFetch";
 
 const PropertyList = () => {
   const images = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVotTEh8H9-ttHXV5IbwLSswacj5hll412cw&usqp=CAU",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCVLv4DgIQLh2MUDkOd-Hhl7OpFClpfQKezQ&usqp=CAU",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWk48BFrZJVqhNwTnotY4aeq5vCueEgTye6g&usqp=CAU",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu8yufvct8XFFtFD5s2SCLTqvSix5mdvohAQ&usqp=CAU",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbhUo1KveiVKlrlESBeBfJrtRgkpdgjNvyLA&usqp=CAU",

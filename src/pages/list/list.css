@@ -6,23 +6,27 @@
 
 .listWrapper {
   width: 100%;
-  max-width: 1024px;
   display: flex;
+  flex-direction: column;
   gap: 20px;
+  width: 100%;
 }
 
 .listSearch {
   flex: 1;
   padding: 10px;
-  position: sticky;
   top: 10px;
   height: max-content;
+  margin: auto;
+  justify-content: flex-start;
+  width: 90%;
 }
 
 .lsTitle{
   font-size: 20px;
   color: #555;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .lsItem{
@@ -96,4 +100,36 @@
 .select{
   border-radius: 5px;
   border: none;
+}
+
+@media only screen and (min-width: 600px) {
+  .listContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .listWrapper {
+    width: 80%;
+    max-width: 1024px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  .listSearch {
+    flex: 1;
+    padding: 10px;
+    position: sticky;
+    top:10px;
+    height: max-content;
+    width: 100%;
+    margin-top: 0%;
+  }
+
+  .lsTitle{
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 10px;
+  }
 }

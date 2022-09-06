@@ -1,26 +1,20 @@
 import React from 'react'
 import "./register.css";
-import { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {Link} from "react-router-dom";
 
-const Register = ({setUsername}) => {
-    const [credentials, setCredentials] = useState({
-        username: undefined,
-        email: undefined,
-        password: undefined,
-    });
+const Register = ({credentials, handleChange}) => {
+    
     const navigate = useNavigate();
-    const handleChange = (e) => { setCredentials((prev) => ({...prev, [e.target.id]: e.target.value}))};
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("https://hostel7booking.herokuapp.com/api/auth/register", credentials);
-            setUsername(credentials.username);
+            await axios.post("https://hostel7booking.herokuapp.com/api/auth/register", 
+            {username: credentials.username, email: credentials.email, password: credentials.password});
             navigate("/");
         } catch (error) {
-            console.log("Sorry, registration failed");
+            console.log("Sorry, registration failed. Please, try again.");
         }
     }
 

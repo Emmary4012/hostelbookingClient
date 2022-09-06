@@ -8,17 +8,20 @@
   .lContainer {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
   }
   
   .lInput{
     height: 30px;
     padding: 10px;
+    border: none;
+    border-bottom: 1px solid #febb02;
+    outline: none;
   }
   
   .lButton {
     border: none;
-    padding: 10px 20px;
+    padding: 5px 10px;
     background-color: #0071c2;
     color: white;
     font-weight: bold;
@@ -28,11 +31,9 @@
 
   .sButton {
     border: none;
-    padding: 10px 20px;
     background-color: white;
     font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
+    text-align: center;
   }
   
   .lButton:disabled{
@@ -42,4 +43,6 @@
 
   .buttons {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
   }

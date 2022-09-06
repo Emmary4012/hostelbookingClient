@@ -4,38 +4,40 @@ import SearchItem from "../../components/searchItem/SearchItem";
 import React from "react";
 import useFetch from "../../hooks/useFetch";
 import Navbar from "../../components/navbar/Navbar";
+import { useLocation } from "react-router-dom";
 
 const List = ({username}) => {
  
   const [campus, setCampus] = useState();
-  const [village, setVillage] = useState();
-  const [villages, setVillages] = useState([]);
+  // const [village, setVillage] = useState();
+  // const [villages, setVillages] = useState([]);
   const [min, setMin] = useState();
   const [max, setMax] = useState();
-  const {data, loading, error, reFetch} = useFetch(`https://hostel7booking.herokuapp.com/api/hostels?campus=${campus||"MUK"||"MUBS"}&village=${village||"Kikoni B"}&min=${min||0}&max=${max||9999999}`);
-  
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
+  const {data, loading, error, reFetch} = useFetch(`https://hostel7booking.herokuapp.com/api/${path}?campus=${campus||"MUK"||"MUBS"}&min=${min||0}&max=${max||9999999}`);
   const handleClick =()=>{
     reFetch()
   }
  const institutions = ["MUK", "KYU", "MUBS", "KIU", "UCU", "UMU"]
 
-const settingVillages = (campus) => {
-setCampus(campus)
+// const settingVillages = (campus) => {
+// setCampus(campus)
 
-switch (campus) {
-  case "MUK":
-    setVillages(["Kikoni A", "Kikoni B", "Kikumi Kikumi"]);
-    break;
-  case "KYU":
-    setVillages(["Ntinda", "Kireka"]);
-    break;
-  case "MUBS":
-  setVillages(["Nakawa", "Mbuya"]);
-    break;
-  default:
-    setVillages([]);
-}
-}
+// switch (campus) {
+//   case "MUK":
+//     setVillages(["Kikoni A", "Kikoni B", "Kikumi Kikumi"]);
+//     break;
+//   case "KYU":
+//     setVillages(["Ntinda", "Kireka"]);
+//     break;
+//   case "MUBS":
+//   setVillages(["Nakawa", "Mbuya"]);
+//     break;
+//   default:
+//     setVillages([]);
+// }
+// }
   return (
     <div>
        <Navbar username = {username}/>
@@ -46,7 +48,7 @@ switch (campus) {
             <div className="lsItem">
               <label>Campus</label>
               {/* <input  placeholder="Enter MUK/KYU/MUBS/..." type="text"  onChange={(e) => {setCampus(e.target.value)}} /> */}
-              <select id="institutions" onChange = {(e)=>{settingVillages(e.target.value)}} className="select">
+              <select id="institutions" onChange = {(e)=>{setCampus(e.target.value)}} className="select">
                   {institutions.map((campus,i) => (
                         <option key={i} value={campus}>
                           {campus}
@@ -54,9 +56,9 @@ switch (campus) {
                       ))}
                 </select>
             </div>
-            <div className="lsItem">
+            
+            {/* <div className="lsItem">
               <label>Village</label>
-              {/* <input  placeholder="Kikoni B, Wandegeya, Kireka, Nakawa" type="text"  onChange={(e) => {setVillage(e.target.value)}} /> */}
               <select id="villages" onChange={(e) => {setVillage(e.target.value)}} className="select">
                   {villages.map((village,i) => (
                         <option key={i} value={village}>
@@ -64,7 +66,8 @@ switch (campus) {
                         </option>
                       ))}
                 </select>
-            </div>
+            </div> */}
+
             <div className="lsItem">
               <label>Options</label>
               <div className="lsOptions">

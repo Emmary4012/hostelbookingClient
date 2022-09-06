@@ -6,9 +6,9 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Reserve = ({ setOpen, hostelId, dates }) => {
-  const [selectedRooms, setSelectedRooms] = useState([]);
-  const { data, loading, error } = useFetch(`https://hostel7booking.herokuapp.com/api/hostels/room/${hostelId}`);
+const Reserve = ({ setOpen, propertyId, dates, selectedRooms, setSelectedRooms}) => {
+  
+  const { data, loading, error } = useFetch(`https://hostel7booking.herokuapp.com/api/hostels/room/${propertyId}`);
   
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
@@ -45,15 +45,15 @@ const Reserve = ({ setOpen, hostelId, dates }) => {
   const navigate = useNavigate();
   
   const handleClick = async () => {
-     try {
-      await Promise.all(
-        selectedRooms.map((roomId) => {
-          const res = axios.put(`https://hostel7booking.herokuapp.com/api/hostelrooms/availability/${roomId}`, {
-            dates: alldates,
-          });
-          return res.data;
-        })
-      );
+      try {
+    //   await Promise.all(
+    //     selectedRooms.map((roomId) => {
+    //       const res = axios.put(`https://hostel7booking.herokuapp.com/api/hostelrooms/availability/${roomId}`, {
+    //         dates: alldates,
+    //       });
+    //       return res.data;
+    //     })
+    //   );
       setOpen(false);
       navigate("/confirmation");
     } catch (err) {}
@@ -69,7 +69,7 @@ const Reserve = ({ setOpen, hostelId, dates }) => {
         <span>Select your rooms:</span>
         {data && data.map((item) => (
           <div className="rItem" key={item._id}>
-            <div className="rItemInfo">
+            <div className="rItemInfo" key={item._id}>
               <div className="rTitle">{item.title}</div>
               <div className="rDesc">{item.desc}</div>
               <div className="rMax">
@@ -81,9 +81,9 @@ const Reserve = ({ setOpen, hostelId, dates }) => {
               {item.roomNumbers.map((roomNumber) => (
                 <div className="room">
                   <label>{roomNumber.number}</label>
-                  <input
+                  <input 
                     type="checkbox"
-                    value={roomNumber._id}
+                    value={roomNumber.number}
                     onChange={handleSelect}
                     disabled={!isAvailable(roomNumber)}
                   />

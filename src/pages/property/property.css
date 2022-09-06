@@ -11,11 +11,10 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 5px 0px;
+    padding: 5px 10px;
     border-radius: 5px;
     position: relative;
     width: 100%;
-    max-width: 1024px;
   }
   
   .headerIcon {
@@ -30,6 +29,7 @@
   .headerSearchText {
     color: lightgray;
     cursor: pointer;
+    font-size: 9px;
   }
   
   .date {
@@ -42,6 +42,7 @@
     z-index: 2;
     position: absolute;
     top: 40px;
+    left: 9px;
     background-color: white;
     color: gray;
     border-radius: 5px;
@@ -83,6 +84,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+    padding: 0 10px;
   }
   
   .hotelWrapper {
@@ -95,20 +97,12 @@
   }
   
   .bookNow {
-    position: absolute;
-    top: 10px;
-    right: 0;
-    border: none;
-    padding: 10px 20px;
-    background-color: #0071c2;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
+    display: none;
   }
   
   .hotelTitle {
     font-size: 24px;
+    text-transform: capitalize;
   }
   
   .hotelAddress {
@@ -126,6 +120,7 @@
   .hotelPriceHighlight {
     color: #008009;
     font-weight: 500;
+    font-size: 14px;
   }
   
   .hotelImages {
@@ -146,6 +141,7 @@
   
   .hotelDetails {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     gap: 20px;
     margin-top: 20px;
@@ -230,3 +226,70 @@
     cursor: pointer;
   }
   
+  
+@media only screen and (min-width: 600px) {
+  .header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }  
+  .cover{
+    display: flex;
+    justify-content: center;
+  }
+    .headerSearch {
+      height: 30px;
+      background-color: white;
+      border: 1px solid #febb02;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 5px 0px;
+      border-radius: 5px;
+      position: relative;
+      width: 100%;
+      max-width: 1024px;
+    }
+  .headerSearchText {
+    color: lightgray;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .hotelContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .hotelDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .bookNow {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    border: none;
+    padding: 10px 20px;
+    background-color: #0071c2;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .options {
+    z-index: 2;
+    position: absolute;
+    top: 40px;
+    background-color: white;
+    color: gray;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+    left: auto;
+  }
+}

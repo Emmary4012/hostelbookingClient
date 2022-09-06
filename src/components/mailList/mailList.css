@@ -17,7 +17,7 @@
 
 .mailInputContainer>input{
   width: 70%;
-  height: 10px;
+  height: 30px;
   padding: 10px;
   border: none;
   margin-right: 10px;
@@ -32,4 +32,18 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.mailTitle{
+  text-align: center;
+}
+
+@media only screen and (min-width: 600px) {
+  .fp {
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
 }

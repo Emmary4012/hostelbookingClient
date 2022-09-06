@@ -1,15 +1,15 @@
 .footer{
   width: 100%;
-  width: 1024px;
   font-size: 12px;
-  padding: 20px;
+  padding: 10px;
 }
 
 .fLists{
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 5px;
+  padding: 15px 0px;
 }
 
 .fList{
@@ -26,4 +26,20 @@
 .fText{
   display: flex;
   justify-content: center;
+}
+
+@media only screen and (min-width: 600px) {
+  .footer{
+    width: 100%;
+    max-width: 1024px;
+    font-size: 12px;
+    padding: 20px;
+  }
+  
+  .fLists{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
 }

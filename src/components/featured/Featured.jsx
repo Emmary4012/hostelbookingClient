@@ -10,7 +10,7 @@ const Featured = () => {
       {loading? "Loading, please wait":<>
 
       <div className="featuredItem" title="Around Makerere University Main Campus">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCVLv4DgIQLh2MUDkOd-Hhl7OpFClpfQKezQ&usqp=CAU"
+        <img src="https://res.cloudinary.com/emmanuel1240/image/upload/v1662467970/upload/Courts_1_boge8k.jpg"
           alt="" className="featuredImg"
         />
         <div className="featuredTitles">
@@ -47,3 +47,5 @@ const Featured = () => {
 };
 
 export default Featured;
+
+// "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCVLv4DgIQLh2MUDkOd-Hhl7OpFClpfQKezQ&usqp=CAU"

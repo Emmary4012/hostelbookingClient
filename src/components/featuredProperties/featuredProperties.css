@@ -1,21 +1,22 @@
 .fp {
   width: 100%;
-  max-width: 1024px;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
 }
 
 .fpItem{
-  flex: 1;
-  gap: 7px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 5px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 7px;
 }
 
 .fpImg{
   width: 100%;
-  height: 250px;
+  height: 200px;
   object-fit: cover;
   border-radius: 5px;
 }
@@ -44,4 +45,14 @@
 
 .fpRating>span{
   font-size: 12px;
+}
+
+@media only screen and (min-width: 600px) {
+  .fp {
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
 }
