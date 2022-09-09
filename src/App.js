@@ -1,6 +1,6 @@
 import React from "react";
-import "./app.css";
 import { useState } from "react";
+import "./app.css";
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,6 +13,8 @@ import Confirmation from "./pages/confirmation/Confirmation";
 import Register from "./pages/register/Register";
 import Property from "./pages/property/Property";
 import About from "./pages/about/About";
+import Terms from "./pages/terms/Terms";
+import Care from "./pages/care/Care";
 
 function App() {
   const [credentials, setCredentials] = useState({username: undefined, 
@@ -43,6 +45,8 @@ function App() {
         dates={dates} setDates={setDates} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms}/>}/>
         <Route path="/confirmation" element={<Confirmation credentials = {credentials} handleChange = {handleChange} selectedRooms={selectedRooms} dates={dates}/>}/>
         <Route path="/about" element={<About credentials = {credentials} handleChange = {handleChange} />}/>
+        <Route path="/terms" element={<Terms credentials = {credentials} />}/>
+        <Route path="/care" element={<Care credentials = {credentials} />}/>
       </Routes>
     </Router>   
   );

@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Reserve = ({ setOpen, propertyId, dates, selectedRooms, setSelectedRooms}) => {
   
   const { data, loading, error } = useFetch(`https://hostel7booking.herokuapp.com/api/hostels/room/${propertyId}`);
-  
+  console.log(data)
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
@@ -46,14 +46,14 @@ const Reserve = ({ setOpen, propertyId, dates, selectedRooms, setSelectedRooms})
   
   const handleClick = async () => {
       try {
-    //   await Promise.all(
-    //     selectedRooms.map((roomId) => {
-    //       const res = axios.put(`https://hostel7booking.herokuapp.com/api/hostelrooms/availability/${roomId}`, {
-    //         dates: alldates,
-    //       });
-    //       return res.data;
-    //     })
-    //   );
+      await Promise.all(
+        selectedRooms.map((roomId) => {
+          const res = axios.put(`https://hostel7booking.herokuapp.com/api/hostelrooms/availability/${roomId}`, {
+            dates: alldates,
+          });
+          return res.data;
+        })
+      );
       setOpen(false);
       navigate("/confirmation");
     } catch (err) {}

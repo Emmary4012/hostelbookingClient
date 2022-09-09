@@ -54,9 +54,9 @@
     background-color: #003580;
     display: flex;
     justify-content: center;
+    width: 100%;
   }
   .navContainer{
-    width: 100%;
     max-width: 1024px;
     color: white;
     display: flex;

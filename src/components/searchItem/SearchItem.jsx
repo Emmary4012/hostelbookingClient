@@ -11,7 +11,7 @@ const SearchItem = ({item}) => {
         <h1 className="siTitle">{item.name}</h1>
         <span className="siDistance">About {item.distance}</span>
         <span className="siFeatures">
-          {item.desc}
+          {item.desc.substring(0, 200)}....
         </span>
         <span className="siCancelOp">Free cancellation </span>
         <span className="siCancelOpSubtitle">

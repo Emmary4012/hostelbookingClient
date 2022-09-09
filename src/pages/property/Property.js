@@ -24,6 +24,8 @@ const Property = ({ credentials, dates, setDates, selectedRooms, setSelectedRoom
   const {id} = useParams();
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [percentage, setPercentage] = useState(0.05);
+  console.log(percentage)
   const [openModal, setOpenModal] = useState(false);
   const [openDate, setOpenDate] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
@@ -39,19 +41,19 @@ const Property = ({ credentials, dates, setDates, selectedRooms, setSelectedRoom
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const {data, loading, error} = useFetch(`https://hostel7booking.herokuapp.com/api/${path}/find/${id}`);
-
   const MILLISECONDS_PER_DAY = 1000*60*60*24;
   function dayDifference(date1,date2){
     const timeDiff = Math.abs(date2.getTime()-date1.getTime());
     const diffDays = Math.ceil(timeDiff/MILLISECONDS_PER_DAY);
     return diffDays;
   }
-
+  
   const days = dayDifference(dates[0].startDate, dates[0].endDate)
   const month = days/30;
   const months = month.toFixed(2);
-  const handleClick =()=>{setOpenModal(true)  
-   Object.assign(credentials, {propertyName: data.name, propertyType: data.type, months: months, price: 0.05*data.cheapestPrice})}
+  const handleClick =()=>{setOpenModal(true);
+    if(data.type==="Hostel"){setPercentage(0.015)}  
+   Object.assign(credentials, {propertyName: data.name, propertyType: data.type, months: months, price: percentage*data.cheapestPrice})}
   const handleOpen = (i) => {
     setSlideNumber(i);
     setOpen(true);
@@ -207,7 +209,8 @@ const Property = ({ credentials, dates, setDates, selectedRooms, setSelectedRoom
                 About {data.distance}
               </span>
               <span className="hotelPriceHighlight">
-                Book a monthly stay at a minimum of only usx {data.cheapestPrice} at {data.name} {data.type}.
+                {data.type === "Hostel"? <div>Book a semester stay which costs a minimum of only usx {data.cheapestPrice} at {data.name} {data.type} </div> :
+                <div> Book a monthly stay at a minimum of only usx {data.cheapestPrice} at {data.name} {data.type}</div>}
               </span>
               <div className="hotelImages">
                 {data.img?.map((photo, i) => (
@@ -230,8 +233,9 @@ const Property = ({ credentials, dates, setDates, selectedRooms, setSelectedRoom
                 </div>
                 <div className="hotelDetailsPrice">
                   <h3>
-                    {months==0? "Please, select from the calender a range of dates when you want to be served.": <div>
-                    Reservation fee is only <b> usx {price}</b> for {months} months</div>}
+                    {months==0? "Please, select from the calender a range of dates when you want to be served.":""} 
+                    {data.type === "Hostel"? <div>Reservation fee is only <b> usx {0.015*data.cheapestPrice}</b></div>:
+                    <div>Reservation fee is only <b> usx {0.05*data.cheapestPrice}</b></div>}
                   </h3>
                   <button onClick={handleClick}>Reserve or Book Now!</button>
                 </div>

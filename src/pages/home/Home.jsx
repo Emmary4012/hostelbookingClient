@@ -1,5 +1,5 @@
 import Featured from "../../components/featured/Featured";
-import FeaturedProperties from "../../components/featuredProperties/FeaturedProperties";
+//import FeaturedProperties from "../../components/featuredProperties/FeaturedProperties";
 import Footer from "../../components/footer/Footer";
 import MailList from "../../components/mailList/MailList";
 import PropertyList from "../../components/propertyList/PropertyList";
@@ -22,8 +22,8 @@ const Home = ({username}) => {
         <Featured/>
         <h1 className="homeTitle">Browse <span className="by">by</span> property type</h1>
         <PropertyList/>
-        <h1 className="homeTitle">Homes <span className="students">students</span> love</h1>
-        <FeaturedProperties/>
+        {/* <h1 className="homeTitle">Homes <span className="students">students</span> love</h1>
+        <FeaturedProperties/> */}
         <MailList/>
         <Footer/>
       </div>
