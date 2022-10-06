@@ -10,22 +10,25 @@ import gsap from "gsap";
 
 const Home = ({username}) => {
   useEffect(()=>{
-    gsap.fromTo (".homeTitle", {x:-100, opacity:0, }, {x:0, opacity:1, duration: 5});
-    gsap.fromTo (".by", {z:100, opacity:0, }, {z:0, opacity:1, duration: 4});
-    gsap.fromTo (".students", {y:-100, opacity:0, }, {y:0, opacity:1, duration: 4});
+    gsap.fromTo (".c", { opacity:0, }, { opacity:1, duration: 3});
+    gsap.fromTo (".browse", {x:-200, opacity:0, }, {x:0, opacity:1, duration: 4});
+    gsap.fromTo (".by", { opacity:0, }, { opacity:1, duration: 7});
+    gsap.fromTo (".lastword", {x:200, opacity:0, }, {x:0, opacity:1, duration: 5, ease: "back.out"});
   },[]);
   return (
-    <div>
+    <div className="c">
       <Navbar username = {username}/>
+      <div className="cover">
       <div className="homeContainer">
-        <h1 className="homeTitle">Browse <span className="by">by</span> campus</h1>
+        <h1 className="homeTitle"><span className="browse">Browse</span> <span className="by">by</span> <span className="lastword">campus</span></h1>
         <Featured/>
-        <h1 className="homeTitle">Browse <span className="by">by</span> property type</h1>
+        <h1 className="homeTitle"><span className="browse">Browse</span> <span className="by">by</span> <span className="lastword">property</span></h1>
         <PropertyList/>
         {/* <h1 className="homeTitle">Homes <span className="students">students</span> love</h1>
         <FeaturedProperties/> */}
         <MailList/>
         <Footer/>
+      </div>
       </div>
     </div>
   );

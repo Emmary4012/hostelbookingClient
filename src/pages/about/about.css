@@ -2,26 +2,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
   }
   
   .aboutContainer{
-    max-width: 85%;
+    max-width: 95%;
     display: flex;
     flex-direction: column;
   }
   .aboutItems {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
     border-bottom: 1px solid #febb02;
+    gap: 10px;
   }
 
   .aboutItem{
-    padding: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+  .aboutItem img{
+    width: 100%;
+    border-radius: 5px;
+    margin: 10px 0;
   }
 
   .hidden{
@@ -32,6 +36,7 @@
     border: none;
     border-bottom: 1px solid #febb02;
     outline: none;
+    width: 100%;
   }
 
   .text{
@@ -49,10 +54,8 @@
     cursor: pointer;
     border-radius: 5px;
   }
-
-  .aList{
-    list-style: none;
-    padding: 0;
+  .buttons{
+    width: 100%;
   }
 
   .form{
@@ -70,3 +73,59 @@
     font-stretch: extra-expanded;
     padding: 5px 0;
   }
+
+  .a{
+    text-decoration: none;
+  }
+  .list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0;
+  }
+  .lsItem{
+    text-decoration: none;
+    padding: 0;
+    font-weight: 500;
+  }
+  .lsItem p, .more{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+  }
+.aboutItemForm{
+  margin-bottom: 10px;
+}
+   
+@media only screen and (min-width: 800px) {
+  .aboutContainer{
+    max-width: 85%;
+    display: flex;
+    flex-direction: column;
+  }
+  .aboutItems {
+    display: grid;
+    grid-template-columns: auto auto;
+    border-bottom: 1px solid #febb02;
+  } 
+  .aboutItem{
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .aboutItem img{
+    width: 90%;
+    border-radius: 5px;
+  }
+  .buttons{
+    width: 240%;
+  }
+  .rInput{
+    border: none;
+    border-bottom: 1px solid #febb02;
+    outline: none;
+    width: 240%;
+  }
+}

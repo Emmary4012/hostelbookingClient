@@ -23,6 +23,15 @@
   margin-right: 10px;
   border-radius: 5px;
   outline: none;
+  color: black;
+}
+.mailInputContainer>input:hover{
+  animation: move 2s ease-out 0s infinite alternate both;
+}
+@keyframes move{
+  0% {background-color: #febb02;}
+  50% {background-color: #003580;}
+  100% {background-color: white;}
 }
 
 .mailInputContainer>button{

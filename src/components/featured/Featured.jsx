@@ -1,16 +1,24 @@
 import "./featured.css";
-import React from "react";
+import React, { useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+import gsap from "gsap";
 
 const Featured = () => {
   const {data, loading, error} = useFetch("https://hostel7booking.herokuapp.com/api/hostels/countByCampuses?campuses=MUK,KYU,MUBS")
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    gsap.fromTo (".featuredItem.one", {x:-200, opacity:0, }, {x:0, opacity:1, duration: 5, ease: "bounce.out",});
+    gsap.fromTo (".featuredItem.two", { opacity:0, }, { opacity:1, duration: 10 });
+    gsap.fromTo (".featuredItem.three", {x:200, opacity:0, }, {x:0, opacity:1, duration: 7, ease: "back.out"});
+  },[]);
+
   return (
     <div className="featured">
       {loading? "Loading, please wait":<>
 
-      <div className="featuredItem" title="Around Makerere University Main Campus" onClick={()=>{navigate("/hostels")}}>
+      <div className="featuredItem one" title="Around Makerere University Main Campus" onClick={()=>{navigate("/properties/hostels")}}>
         <img src="https://res.cloudinary.com/emmanuel1240/image/upload/v1662467970/upload/Courts_1_boge8k.jpg"
           alt="" className="featuredImg"
         />
@@ -20,26 +28,25 @@ const Featured = () => {
         </div>
       </div>
       
-      {data[1]>0 && <div className="featuredItem" title="Around Kyambogo University">
-        <img src ="https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        //src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR77u5FNpgGQeLpBZWeZ_BhX7wtaF5Ry7MiXA&usqp=CAU"
+      <div className="featuredItem two" title="Around Kyambogo University" onClick={()=>{navigate("/properties/hostels", {state: "KYU"})}}>
+        <img src = "https://res.cloudinary.com/emmanuel1240/image/upload/v1663415564/upload/1_krnbd0.jpg"
           alt="" className="featuredImg"
         />
         <div className="featuredTitles">
           <h1 title="Kyambogo University">KYU</h1>
-          <h2> {data[1]} Hostel</h2>
+          <h2> {data[1]} Hostels</h2>
         </div>
-      </div>}
+      </div>
 
-      {data[2]>0 && <div className="featuredItem" title="Around Makerere University Business School">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVotTEh8H9-ttHXV5IbwLSswacj5hll412cw&usqp=CAU"
+      <div className="featuredItem three" title="Around Makerere University Business School">
+        <img src="https://res.cloudinary.com/emmanuel1240/image/upload/v1663403099/upload/12_jn5qa4.jpg"
           alt="" className="featuredImg"
         />
         <div className="featuredTitles">
           <h1 title="Makerere University Business School"><bdo dir="rtl">SBUM</bdo></h1>
-          <h2>{data[2]} Hostel</h2>
+          <h2 style={{opacity: 0}}>`</h2>
         </div>
-      </div>}
+      </div>
       
       </>}
     </div>
@@ -48,5 +55,3 @@ const Featured = () => {
 };
 
 export default Featured;
-
-// "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCVLv4DgIQLh2MUDkOd-Hhl7OpFClpfQKezQ&usqp=CAU"

@@ -12,7 +12,7 @@ const Register = ({credentials, handleChange}) => {
         try {
             await axios.post("https://hostel7booking.herokuapp.com/api/auth/register", 
             {username: credentials.username, email: credentials.email, password: credentials.password});
-            navigate("/");
+            navigate("/login");
         } catch (error) {
             console.log("Sorry, registration failed. Please, try again.");
         }

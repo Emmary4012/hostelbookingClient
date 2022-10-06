@@ -15,6 +15,8 @@ import Property from "./pages/property/Property";
 import About from "./pages/about/About";
 import Terms from "./pages/terms/Terms";
 import Care from "./pages/care/Care";
+import Recreation from "./pages/recreation/Recreation";
+import SkyConfirmation from "./pages/skyConfirmation/SkyConfirmation";
 
 function App() {
   const [credentials, setCredentials] = useState({username: undefined, 
@@ -34,19 +36,17 @@ function App() {
         <Route path="/register" element={<Register credentials = {credentials} handleChange = {handleChange}/>}/>
         <Route path="/login" element={<Login credentials = {credentials} handleChange = {handleChange}/>}/>
         <Route path="/" element={<Home username = {credentials.username}/>}/>
-        <Route path="/hostels" element={<List username = {credentials.username} />}/>
-        <Route path="/hostels/:id" element={<Property credentials = {credentials} handleChange = {handleChange} 
+        <Route path="/recreation" element={<Recreation credentials = {credentials} handleChange = {handleChange} dates={dates} setDates={setDates}/>}/>
+        <Route path="/properties/:property" element={<List username = {credentials.username} />}/>
+        <Route path="/properties/:property/:id" element={<Property credentials = {credentials} handleChange = {handleChange} 
         dates={dates} setDates={setDates} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms}/>}/>
-        <Route path="/rentals" element={<List username = {credentials.username} />}/>
-        <Route path="/rentals/:id" element={<Property credentials = {credentials} handleChange = {handleChange} 
-        dates={dates} setDates={setDates} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms}/>}/>
-        <Route path="/apartments" element={<List username = {credentials.username} />}/>
-        <Route path="/apartments/:id" element={<Property credentials = {credentials} handleChange = {handleChange} 
-        dates={dates} setDates={setDates} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms}/>}/>
+        
         <Route path="/confirmation" element={<Confirmation credentials = {credentials} handleChange = {handleChange} selectedRooms={selectedRooms} dates={dates}/>}/>
+        <Route path="/skyconfirmation" element={<SkyConfirmation credentials = {credentials} handleChange = {handleChange} selectedRooms={selectedRooms} dates={dates}/>}/>
         <Route path="/about" element={<About credentials = {credentials} handleChange = {handleChange} />}/>
         <Route path="/terms" element={<Terms credentials = {credentials} />}/>
         <Route path="/care" element={<Care credentials = {credentials} />}/>
+        <Route path="*" element={<Home username = {credentials.username} />}/>
       </Routes>
     </Router>   
   );

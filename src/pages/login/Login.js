@@ -12,6 +12,7 @@ const Login = ({credentials, handleChange}) => {
         try {   
             await axios.post("https://hostel7booking.herokuapp.com/api/auth/login", 
             {username: credentials.username, password: credentials.password});
+            localStorage.setItem("username", credentials.username);
             navigate("/")
         } catch (error) {
             console.log("Sorry, login failed. Please, try again.");

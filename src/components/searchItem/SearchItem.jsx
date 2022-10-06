@@ -1,8 +1,13 @@
 import "./searchItem.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import gsap from "gsap";
 
 const SearchItem = ({item}) => {
+
+  useEffect(()=>{
+    gsap.fromTo (".searchItem", {x:200, opacity:0, }, {x:0, opacity:1, duration: 3, ease: "bounce.out",});
+  },[]);
   
   return (
     <div className="searchItem">
@@ -26,7 +31,7 @@ const SearchItem = ({item}) => {
         <div className="siDetailTexts">
           <span className="siPrice">Starting from usx {item.cheapestPrice}</span>
           <span className="siTaxOp">Includes taxes and fees</span>
-          <Link to={`/hostels/${item._id}`}>
+          <Link to={`/properties/${item.type}s/${item._id}`}>
           <button className="siCheckButton">See Availability</button>
           </Link>
         </div>

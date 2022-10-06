@@ -1,4 +1,4 @@
-import "./property.css";
+import "./recreation.css";
 import Navbar from "../../components/navbar/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,52 +9,51 @@ import {
   faCalendarDays,
   faPerson,
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import React from "react";
-import {  useParams } from "react-router-dom";
-import useFetch from "../../hooks/useFetch";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import Reserve from "../../components/reserve/Reserve";
-import gsap from "gsap";
+import { useNavigate } from "react-router-dom";
 
-const Property = ({ credentials, dates, setDates, selectedRooms, setSelectedRooms}) => {
-  useEffect(()=>{ gsap.fromTo (".hotelContainer", {x:-200, opacity:0, }, {x:0, opacity:1, duration: 3, ease: "bounce.out",});},[]);
-  const {property, id} = useParams();
-  const path = property;
+const Recreation = ({ credentials, dates, setDates}) => {
+
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
+  const [data, setData] = useState({game: undefined, days: undefined, breakfast: undefined, lunch: undefined, supper: undefined});
   const [openDate, setOpenDate] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({ adults: 1, children: 0, rooms: 1,});
+  const navigate = useNavigate();
+  const images = [
+    
+    "https://res.cloudinary.com/emmanuel1240/image/upload/v1663272110/upload/11_coibzl.jpg",
+    "https://res.cloudinary.com/emmanuel1240/image/upload/v1663272084/upload/7_sdvxxv.jpg",
+    "https://res.cloudinary.com/emmanuel1240/image/upload/v1663272073/upload/6_o3tg4k.jpg",
+
+    "https://res.cloudinary.com/emmanuel1240/image/upload/v1663272106/upload/10_kkiup6.jpg",
+    "https://res.cloudinary.com/emmanuel1240/image/upload/v1663272087/upload/3_bp9tqp.jpg",
+    "https://res.cloudinary.com/emmanuel1240/image/upload/v1663272086/upload/5_xgjxic.jpg",
+
+    "https://res.cloudinary.com/emmanuel1240/image/upload/v1663272113/upload/1_meple9.jpg",
+    "https://res.cloudinary.com/emmanuel1240/image/upload/c_crop,h_750,w_1000/v1663272099/upload/2_xm9set.jpg",
+    "https://res.cloudinary.com/emmanuel1240/image/upload/v1663272108/upload/12_aoxwll.jpg",
+    
+
+    "https://res.cloudinary.com/emmanuel1240/image/upload/v1663272091/upload/4_udpqsk.jpg",
+    "https://res.cloudinary.com/emmanuel1240/image/upload/v1663272093/upload/9_ioqifa.jpg",
+    "https://res.cloudinary.com/emmanuel1240/image/upload/c_crop,h_540,w_540/v1663560976/upload/8_c6brhp.jpg"    
+  ]
   const handleOption = (name, operation) => {
     setOptions((prev) => {
-      return {
-        ...prev,
-        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
-      };
+      return {...prev,[name]: operation === "i" ? options[name] + 1 : options[name] - 1, };
     });
   };
   
-  const {data, loading, error} = useFetch(`https://hostel7booking.herokuapp.com/api/${path}/find/${id}`);
-  const MILLISECONDS_PER_DAY = 1000*60*60*24;
-  function dayDifference(date1,date2){
-    const timeDiff = Math.abs(date2.getTime()-date1.getTime());
-    const diffDays = Math.ceil(timeDiff/MILLISECONDS_PER_DAY);
-    return diffDays;
-  }
-  
-  const days = dayDifference(dates[0].startDate, dates[0].endDate)
-  const month = days/30;
-  const months = month.toFixed(1);
-  const handleClick =()=>{setOpenModal(true);
-    {data.type=="hostel"?
-    Object.assign(credentials, {propertyName: data.name, propertyType: data.type, months: months, price: 0.01*data.cheapestPrice}):
-    Object.assign(credentials, {propertyName: data.name, propertyType: data.type, months: months, price: 0.03*data.cheapestPrice})
-  }
+  const handleClick =()=>{
+      Object.assign(credentials, {propertyName: data.name, propertyType: data.type, price: data.cheapestPrice})
+      navigate("/skyconfirmation");
     }
     
   const handleOpen = (i) => {
@@ -202,54 +201,83 @@ const Property = ({ credentials, dates, setDates, selectedRooms, setSelectedRoom
             )}
             <div className="hotelWrapper">
               <button className="bookNow" onClick={handleClick}>Reserve or Book Now!</button>
-              <h1 className="hotelTitle">{data.name} {data.type}</h1>
-              {/* <div className="hotelAddress">
+              <h1 className="hotelTitle">SKY BLISS</h1>
+              <div className="hotelAddress">
                 <FontAwesomeIcon icon={faLocationDot} />
-                <span> {data.address}</span>
-              </div> */}
-              {/* <span className="hotelDistance">
-                About {data.distance}
-              </span> */}
-              <span className="hotelPriceHighlight">
-                {data.type == "hostel"? <div>Book a semester stay which costs a minimum of only usx {data.cheapestPrice} at 
-                <div className="c"> {data.name} {data.type} </div></div> :
-                <div> Book a monthly stay at a minimum of only usx {data.cheapestPrice} at {data.name}</div>}
+                <span> Kikoni B</span>
+              </div>
+              <span className="hotelDistance">
+                About 500m from Sir Apollo Rd
               </span>
+              {/* <span className="hotelPriceHighlight">
+                <div>Book a day stay which costs a minimum of only usx at Sky Bliss</div> 
+              </span> */}
               <div className="hotelImages">
-                {data.img?.map((photo, i) => (
+                {images?.map((photo, i) => (
                   <div className="hotelImgWrapper" key={i}>
-                    <img
-                      onClick={() => handleOpen(i)}
-                      src={photo}
-                      alt=""
-                      className="hotelImg"
-                    />
+                    <img onClick={() => handleOpen(i)} src={photo} alt="Come and Have fun" className="hotelImg" />
                   </div>
                 ))}
               </div>
               <div className="hotelDetails">
                 <div className="hotelDetailsTexts">
-                  <h1 className="hotelTitle">{data.title}!</h1>
+                  <h1 className="hotelTitle">ADVENTURE PARK!</h1>
                   <p className="hotelDesc">
-                    {data.desc}
+                    We offer the following games and sports
                   </p>
                 </div>
-                <div className="hotelDetailsPrice">
-                  <h3>
-                    {months==0? "Please, select from the calender a range of dates when you want to be served.":""} 
-                    {data.type == "hostel"? <div>Reservation fee is only <b> usx {0.01*data.cheapestPrice}</b></div>:
-                    <div>Reservation fee is only <b> usx {0.03*data.cheapestPrice}</b></div>}
-                  </h3>
-                  <button onClick={handleClick}>Reserve or Book Now!</button>
-                </div>
               </div>
+              <div className="fLists">
+                <ul className="fList">
+                  <span className="lsTitle">High Rope Course Games</span>
+                  <li className="fListItem">Ninja Warrior (High Rope Climbing)</li>
+                  <li className="fListItem">Ziplining</li>
+                </ul>
+                <ul className="fList">
+                  <span className="lsTitle">Team Building Activities</span>
+                  <li className="fListItem">Sack Racing</li>
+                  <li className="fListItem">Water Bottle Filling</li>
+                  <li className="fListItem">Tyre Challenges</li>
+                  <li className="fListItem">Treasure Hunting</li>
+                </ul>
+                <ul className="fList">
+                  <span className="lsTitle">Gardens</span>
+                  <li className="fListItem">Birthday Parties</li>
+                  <li className="fListItem">Graduation Parties</li>
+                  <li className="fListItem">Bridal Showers</li>
+                  <li className="fListItem">Baby Showers</li>
+                  <li className="fListItem">Introduction Meetings</li>
+                  <li className="fListItem">Wedding Meetings</li>
+                 
+                </ul>
+                <ul className="fList">
+                  <span className="lsTitle">Intellectual Services</span>
+                  <li className="fListItem">Financial Literacy Workshops</li>
+                  <li className="fListItem">Inspirational Seminars</li>
+                </ul>
+                <ul className="fList">
+                  <span className="lsTitle">Corporate Meetings' Space</span>
+                  <li className="fListItem">Financial Literacy Workshops</li>
+                  <li className="fListItem">Inspirational Seminars</li>
+                </ul>
+                <ul className="fList">
+                  <span className="lsTitle">In-Door Games</span>
+                  <li className="fListItem">Chess</li>
+                  <li className="fListItem">Ludo</li>
+                  <li className="fListItem">Snakes & Ladder</li>
+                  <li className="fListItem">Checkers</li>
+                </ul>
+              </div>
+              <div className="hotelDetailsPrice">
+                  {/* <h3> Prices </h3> */}
+                  <button onClick={handleClick}>Reserve or Book Now!</button>
+                  <button onClick={()=>{navigate("/")}}>Home</button> 
+                </div>
             </div>
           </div>
        
-        {openModal && <Reserve dates={dates} propertyId={id} setOpen={setOpenModal} 
-         selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} dat = {data}/>}
     </div>
   );
 };
 
-export default Property;
+export default Recreation;

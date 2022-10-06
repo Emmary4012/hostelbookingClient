@@ -26,11 +26,11 @@ const About = ({handleChange, username}) => {
           <Navbar username ={username}/>
           <div className = "aboutItems">
             <div className = "aboutItem">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCVLv4DgIQLh2MUDkOd-Hhl7OpFClpfQKezQ&usqp=CAU" alt="logo" className="aboutItemImg" />
+              <img src="https://res.cloudinary.com/emmanuel1240/image/upload/v1662467970/upload/Courts_1_boge8k.jpg" alt="logo" className="aboutItemImg" />
             </div>
             <div className = "aboutItem">
               <p>I have met different youths especially students anxiously looking for places of accomodation.
-                Some of them hoped in me since I have been around campus for quite along time.
+                Some of them who knew me hoped in me since I have been around campus for quite along time.
                 As I practiced my javascript knowledge, I got inspired to create an application not just for myself, 
                 but also to help many others escape the anxiety of looking for a place of accomodation. 
                 Let me take you through some of the benefits of this application. 
@@ -47,16 +47,26 @@ const About = ({handleChange, username}) => {
             </div>
             <div className = "aboutItem">
              <ul className="aList">
-              <li>It is less tiresome. The much manual movements one makes hoping to find a better option, is escaped.</li> <br/>
+              <li>It is less burdensome. The much manual movements one makes hoping to find a better option, is escaped.</li> <br/>
               <li>It publicizes even the more hidden facilities therefore creating a good sample space where choices can be drawn from.</li> <br/>
               <li>One certainly escapes the anxiety of looking for a place of accomodation.</li> <br/>
              </ul>
             </div>
          
             <div className = "aboutItem">
-              <p className="theme">Together</p>
+              <div className="dither">
+                <strong>Briefly about Dither Technologies (What we do)</strong> <br/>
+                <ul className="list">
+                  <li className="lsItem">Software Development. 
+                    <p>We already have systems that run in hospitals, pharmacies, points of sale, 
+                    finanial organisations, property management organisations, schools and also cafe or restaurant.</p></li>
+                  <li className="lsItem">Website development & hosting, computer networking, install CCTV cameras and offer IT consultancy.</li>
+                </ul>
+                <p className="more"><a className="a" target="_blank" href="https://www.ditherug.tech/about-us">More about Dither Technologies</a></p>
+              </div>
+              {/* <p className="theme">Together</p>
               <p className="theme">We</p>
-              <p className="theme">Can</p>
+              <p className="theme">Can</p> */}
             </div>
             <div className = "aboutItem">
               <div className = "aboutItemForm">
@@ -67,7 +77,7 @@ const About = ({handleChange, username}) => {
                   <input type="text" name="email"  placeholder="email" id="email" onChange={handleChange} className="rInput" /> 
                   <div className="buttons">
                     <button className='rButton' type="submit" >Submit</button> 
-                    <button className='rButton' onClick={()=>{navigate("/")}}>Back to Home</button> 
+                    <button className='rButton' onClick={()=>{navigate("/")}}>Home</button> 
                   </div>
                 </form>
               </div>

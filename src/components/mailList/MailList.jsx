@@ -23,6 +23,7 @@ const MailList = () => {
         <input type="text" name="email" placeholder="Your Email" />
         <button onClick={sendEmail}>Subscribe</button>
       </form>
+      <span className="mailDesc">Expect updates & more properties very soon; not later than this week</span>
     </div>
   )
 }

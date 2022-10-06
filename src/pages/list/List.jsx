@@ -4,40 +4,21 @@ import SearchItem from "../../components/searchItem/SearchItem";
 import React from "react";
 import useFetch from "../../hooks/useFetch";
 import Navbar from "../../components/navbar/Navbar";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 const List = ({username}) => {
- 
-  const [campus, setCampus] = useState();
-  // const [village, setVillage] = useState();
-  // const [villages, setVillages] = useState([]);
+  const {property} = useParams();  
   const [min, setMin] = useState();
   const [max, setMax] = useState();
   const location = useLocation();
-  const path = location.pathname.split("/")[1];
+  const path = property;
+  const [campus, setCampus] = useState(location.state||"MUK");
   const {data, loading, error, reFetch} = useFetch(`https://hostel7booking.herokuapp.com/api/${path}?campus=${campus||"MUK"||"MUBS"}&min=${min||0}&max=${max||9999999}`);
   const handleClick =()=>{
     reFetch()
   }
- const institutions = ["MUK", "KYU", "MUBS", "KIU", "UCU", "UMU"]
+ const institutions = ["MUK", "KYU", "MUBS"];
 
-// const settingVillages = (campus) => {
-// setCampus(campus)
-
-// switch (campus) {
-//   case "MUK":
-//     setVillages(["Kikoni A", "Kikoni B", "Kikumi Kikumi"]);
-//     break;
-//   case "KYU":
-//     setVillages(["Ntinda", "Kireka"]);
-//     break;
-//   case "MUBS":
-//   setVillages(["Nakawa", "Mbuya"]);
-//     break;
-//   default:
-//     setVillages([]);
-// }
-// }
   return (
     <div>
        <Navbar username = {username}/>
@@ -48,7 +29,7 @@ const List = ({username}) => {
             <div className="lsItem">
               <label>Campus</label>
               {/* <input  placeholder="Enter MUK/KYU/MUBS/..." type="text"  onChange={(e) => {setCampus(e.target.value)}} /> */}
-              <select id="institutions" onChange = {(e)=>{setCampus(e.target.value)}} className="select">
+              <select id="institutions" placeholder={campus} value={campus} onChange = {(e)=>{setCampus(e.target.value)}} className="select">
                   {institutions.map((campus,i) => (
                         <option key={i} value={campus}>
                           {campus}
@@ -56,17 +37,6 @@ const List = ({username}) => {
                       ))}
                 </select>
             </div>
-            
-            {/* <div className="lsItem">
-              <label>Village</label>
-              <select id="villages" onChange={(e) => {setVillage(e.target.value)}} className="select">
-                  {villages.map((village,i) => (
-                        <option key={i} value={village}>
-                          {village}
-                        </option>
-                      ))}
-                </select>
-            </div> */}
 
             <div className="lsItem">
               <label>Options</label>
