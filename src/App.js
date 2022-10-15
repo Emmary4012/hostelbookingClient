@@ -17,6 +17,15 @@ import Terms from "./pages/terms/Terms";
 import Care from "./pages/care/Care";
 import Recreation from "./pages/recreation/Recreation";
 import SkyConfirmation from "./pages/skyConfirmation/SkyConfirmation";
+import {  propertyInputs, userInputs } from "./formSource";
+import { roomColumns, propertyColumns, userColumns } from "./datatablesource";
+import  NewProperty  from "./pages/property/NewProperty";
+import  NewRoom  from "./pages/newRoom/NewRoom";
+import UpdateProperty from "./pages/property/UpdateProperty";
+import Admin from "./pages/admin/Admin";
+import Record from "./pages/record/Record";
+import Single from "./pages/single/Single";
+import New from "./pages/new/New";
 
 function App() {
   const [credentials, setCredentials] = useState({username: undefined, 
@@ -46,6 +55,30 @@ function App() {
         <Route path="/about" element={<About credentials = {credentials} handleChange = {handleChange} />}/>
         <Route path="/terms" element={<Terms credentials = {credentials} />}/>
         <Route path="/care" element={<Care credentials = {credentials} />}/>
+
+        <Route path="/admin">
+
+          <Route index element={<Admin />} />
+          <Route path="users">
+            <Route index element={<Record columns={userColumns}/>} />
+            <Route path=":userId" element={<Single />} />
+            <Route path="new" element={<New inputs={userInputs} title="Add New User"/>} />
+          </Route>
+
+          <Route path="properties/:property">
+            <Route index element={<Record columns={propertyColumns}/>} />
+            <Route path="new" element={<NewProperty inputs={propertyInputs}/>} />      
+            <Route path=":id" element={<UpdateProperty />} />
+          </Route>
+
+          <Route path="property/rooms">
+            <Route index element={<Record columns={roomColumns}/>} />
+            <Route path="new" element={<NewRoom />} />
+            <Route path="view/:roomsId" element={<Single />} />
+            <Route path=":roomsId" element={<Single />} />
+          </Route>
+
+        </Route>
         <Route path="*" element={<Home username = {credentials.username} />}/>
       </Routes>
     </Router>   

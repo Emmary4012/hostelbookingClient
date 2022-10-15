@@ -24,7 +24,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className="navItem">
-            {username? <button className="navUsername r">{username}</button>:<button className="navButton" onClick={()=>navigate("/register")}>Register</button>}
+            {username? <button className="navUsername r" onClick={()=>navigate("/admin")}>{username}</button>:<button className="navButton" onClick={()=>navigate("/register")}>Register</button>}
           </div>
           <div className="navItem">
             {username? <button className="navButton" onClick={()=>navigate("/login")}>Logout</button>:<button className="navButton" onClick={()=>navigate("/login")}>Login</button>}

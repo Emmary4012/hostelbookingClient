@@ -23,17 +23,13 @@
 }
 
 .logo{
-  font-weight: 500;
-  /* transition: all 1s ease-out 0.5s; */
+  font-weight: 700;
+  font-size: 14px;
   animation: logo 2s ease-out 2.5s infinite alternate both;
   -ms-animation: logo 2s ease-out 2.5s infinite alternate both;
   -webkit-animation: logo 2s ease-out 2.5s infinite alternate both;
   -moz-animation: logo 2s ease-out 2.5s infinite alternate both;
   -o-animation: logo 2s ease-out 2.5s infinite alternate both;
-}
-@keyframes logo{
-  50%{opacity: 80%;}
-  100% { transform: translateX(100vw) scale(10, 10) skewY(60deg); opacity: 100%;}
 }
 
 .logo:hover{
